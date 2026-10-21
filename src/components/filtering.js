@@ -6,6 +6,7 @@ const compare = createComparison(defaultRules);
 
 export function initFiltering(elements, indexes) {
     // @todo: #4.1 — заполнить выпадающие списки опциями
+
     Object.keys(indexes)                                    // Получаем ключи из объекта
         .forEach((elementName) => {                        // Перебираем по именам
             elements[elementName].append(                    // в каждый элемент добавляем опции
@@ -29,10 +30,8 @@ export function initFiltering(elements, indexes) {
                 clearInput.value = '';
                 const field = action.dataset.field;
                 state[field] = '';
-                console.log(state[field]);
             }
         }
-
         // @todo: #4.5 — отфильтровать данные используя компаратор
         return data.filter(row => compare(row, state)); 
     }

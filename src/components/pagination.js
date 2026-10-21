@@ -8,6 +8,7 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
     
     return (data, state, action) => {
         // @todo: #2.1 — посчитать количество страниц, объявить переменные и константы
+
         const rowsPerPage = state.rowsPerPage;                        // будем часто обращаться, чтобы короче записывать
         const pageCount = Math.ceil(data.length / rowsPerPage);        // число страниц округляем в большую сторону
         let page = state.page;       
@@ -37,6 +38,5 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         // @todo: #2.2 — посчитать сколько строк нужно пропустить и получить срез данных
         const skip = (page - 1) * rowsPerPage;            // сколько строк нужно пропустить
         return data.slice(skip, skip + rowsPerPage);         
-        return data.slice(0, 10);
     }
 }

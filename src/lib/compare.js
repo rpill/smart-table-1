@@ -61,7 +61,6 @@ const rules = {
         if (Array.isArray(targetValue)) {
             if (targetValue.length === 2) {
                 const [from, to] = targetValue;
-
                 if (!isEmpty(from) && sourceValue < from) {
                     return { result: false };
                 }
@@ -234,16 +233,15 @@ function compare(source, target, rulesList) {
     // Проверяем каждое свойство в целевом объекте
     for (const key in target) {
         if (Object.prototype.hasOwnProperty.call(target, key)) {
+
             const targetValue = target[key];
             const sourceValue = source[key];
-
             // Применяем каждое правило по порядку
             let skipProperty = false;
             let ruleResult = null;
 
             for (const rule of rulesList) {
                 const ruleOutput = rule(key, sourceValue, targetValue, source, target);
-
                 // Проверяем, нужно ли пропустить это свойство
                 if (ruleOutput.skip === true) {
                     skipProperty = true;
@@ -291,13 +289,14 @@ function compare(source, target, rulesList) {
  * повторного определения.
  */
 function createComparison(ruleNames, customRules = []) {
+    console.log(customRules);
     return (source, target) => {
         const rulesList = [
             ...ruleNames.map(ruleName => {
                 // Для правил, которым нужны параметры
                 if (ruleName === 'skipNonExistentSourceFields') {
                     return rules[ruleName](source);
-                }
+                }   
                 return rules[ruleName]();
             }),
             ...customRules
