@@ -33,6 +33,17 @@ export function initFiltering(elements, indexes) {
             }
         }
         // @todo: #4.5 — отфильтровать данные используя компаратор
+
+        const fromValue = state.totalFrom !== undefined && state.totalFrom !== '' ? Number(state.totalFrom) : undefined;
+        const toValue = state.totalTo !== undefined && state.totalTo !== '' ? Number(state.totalTo) : undefined;
+        
+        if (fromValue !== undefined || toValue !== undefined) {
+            state.total = [fromValue, toValue];
+        }
+        
+        delete state.totalFrom;
+        delete state.totalTo;
+          
         return data.filter(row => compare(row, state)); 
     }
 }

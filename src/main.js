@@ -28,16 +28,6 @@ function collectState() {
     const rowsPerPage = parseInt(state.rowsPerPage);
     const page = parseInt(state.page ?? 1);
 
-    const fromValue = state.totalFrom !== undefined && state.totalFrom !== '' ? Number(state.totalFrom) : undefined;
-    const toValue = state.totalTo !== undefined && state.totalTo !== '' ? Number(state.totalTo) : undefined;
-    
-    if (fromValue !== undefined || toValue !== undefined) {
-        state.total = [fromValue, toValue];
-    }
-    
-    delete state.totalFrom;
-    delete state.totalTo;   
-     
     return {
         ...state,
         rowsPerPage,

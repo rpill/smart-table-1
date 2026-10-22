@@ -289,7 +289,6 @@ function compare(source, target, rulesList) {
  * повторного определения.
  */
 function createComparison(ruleNames, customRules = []) {
-    console.log(customRules);
     return (source, target) => {
         const rulesList = [
             ...ruleNames.map(ruleName => {
